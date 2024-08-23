@@ -3,7 +3,9 @@
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
 
-  include("class_crud.php");
+  require_once("class_crud.php");
+  require_once("class_admin.php");
+
 
   //$c = new PDO("mysql:host=10.10.10.164;dbname=shop;charset=utf8mb4", "edgar", "1234"); //DEBEMOS USAR UN OBJETO DE LA CLASE PDO PARA PODER TRABAJAR CON SENTENCIAS SQL DE TIPO PDO
   $c = new PDO("mysql:host=localhost;dbname=shop;charset=utf8mb4", "root", "");           //DEBEMOS USAR UN OBJETO DE LA CLASE PDO PARA PODER TRABAJAR CON SENTENCIAS SQL DE TIPO PDO
@@ -17,14 +19,14 @@
   // echo "<hr>this->connection = ";
   // var_dump($test->get_connection());
 
+  // echo "this->id_field = ";
+  // var_dump($test->get_id_field());
+
   // echo "<hr>this->string_fields = ";
   // var_dump($test->get_string_fields());
 
   // echo "<hr>this->array_fields = ";
   // var_dump($test->get_array_fields());
-
-  // echo "<hr>this->array_fields_type = ";
-  // var_dump($test->get_array_fields_type());
 
   // echo "<hr>this->string_values = ";
   // var_dump($test->get_string_values());
@@ -34,8 +36,8 @@
   /******* PRUEBAS DE METODOS *******/
 
   // TEST DE create_tuple()
-  // $tupla = array("pera","manzana","melón");
-  // $test->create_tuple(json_encode($tupla)); 
+  // $tupla = array("naranja","peladillo","melocotón");
+  // $test->create_tuple($tupla); 
   // RESULTADO: OK!!
 
   // TEST DE delete_tuple()
@@ -47,10 +49,14 @@
   // RESULTADO: OK!!
 
   // TEST DE update_tuple()
-  $fields = array("name");
-  $values = array("sandia");
-  $test->update_tuple($fields, $values, "id_admin=11");
+  // $fields = array("name");
+  // $values = array("melón");
+  // $test->update_tuple($fields, $values, 10);
   // RESULTADO: NO OK!!
 
   // TEST FINAL: NO OK!!
+
+  $admin = new Admin($c, NULL, "edgar", "edgar@edgar.com", "1234");
+  //echo $admin->get_id();
+
 ?>
